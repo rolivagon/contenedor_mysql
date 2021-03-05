@@ -1,0 +1,22 @@
+version: "2"
+services:
+ mysql57:
+  image: mysql:${MYSQL_VERSION}
+  container_name: ${CONTAINER_NAME}
+  environment:
+    MYSQL_DATABASE: ${DATABASE}
+    MYSQL_USER: ${USER}
+    MYSQL_PASSWORD: ${PASSWORD}
+    MYSQL_ROOT_PASSWORD: ${PASSWORD}
+  ports:
+   - "${PORT}:3306"
+  expose:
+  - '3306'
+  volumes:
+    - ./storage:/var/lib/mysql
+  networks:
+   - backend
+networks:
+ backend:
+  external:
+   name: ${NETWORK}
